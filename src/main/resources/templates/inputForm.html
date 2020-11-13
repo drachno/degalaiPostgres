@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Degalai</title>
+</head>
+
+<body>
+
+<form th:action="@{/form}" th:object="${forma}" method = "post">
+
+    <table style="font-size:20px">
+        <tr>
+            <th>Benzino kiekis (litrais): </th>
+            <th><input type="number" name="benzinasKiekis" th:field="*{benzinasKiekis}"/></th>
+            <th>Sumokėta: </th>
+            <th><input type="number" name="benzinasMoketa" th:field="*{benzinasMoketa}"/></th>
+        </tr>
+        <tr>
+            <th>Dyzelino kiekis (litrais): </th>
+            <th><input type="number" name="dyzelinasKiekis" th:field="*{dyzelinasKiekis}"/></th>
+            <th>Sumokėta: </th>
+            <th><input type="number" name="dyzelinasMoketa" th:field="*{dyzelinasMoketa}"/></th>
+        </tr>
+        <tr>
+            <th>Dujų kiekis (litrais): </th>
+            <th><input type="number" name="dujosKiekis" th:field="*{dujosKiekis}"/></th>
+            <th>Sumokėta: </th>
+            <th><input type="number" name="dujosMoketa" th:field="*{dujosMoketa}"/></th>
+        </tr>
+        <tr>
+            <th></th>
+            <th><button type="submit" style="font-size:40px">Generuoti failą</button></th>
+            <th></th>
+        </tr>
+
+    </table>
+
+
+</form>
+</body>
+</html>
