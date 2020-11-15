@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table
-public class Automobiliai {
+public class Automobilis {
 
     @Id
     @Column
@@ -27,10 +27,10 @@ public class Automobiliai {
     @Column(name = "sunaudojodegalu")
     private Double sunaudojoDegalu;
 
-    public Automobiliai() {
+    public Automobilis() {
     }
 
-    public Automobiliai(String name, double sanaudosVasara, double sanaudosZiema, Degalutipas degalutipas, Double sunaudojoDegalu) {
+    public Automobilis(String name, double sanaudosVasara, double sanaudosZiema, Degalutipas degalutipas, Double sunaudojoDegalu) {
         this.name = name;
         this.sanaudosVasara = sanaudosVasara;
         this.sanaudosZiema = sanaudosZiema;
