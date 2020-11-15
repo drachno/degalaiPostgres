@@ -1,6 +1,6 @@
 package com.service;
 
-import com.entity.Automobiliai;
+import com.entity.Automobilis;
 import com.entity.AutomobiliaiForma;
 import com.repository.AutomobiliuRepozitorija;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.utility.DegalaiUtils.getRandomNumber;
+import static com.utility.Randomizer.getRandomNumber;
 
 @Service
 public class DegalaiServiceImpl implements DegalaiService {
 
     @Autowired
-    AutomobiliuRepozitorija automobiliuRepozitorija;
+    private AutomobiliuRepozitorija automobiliuRepozitorija;
 
     @Override
     public AutomobiliaiForma skaiciuotiKaina(AutomobiliaiForma forma) {
@@ -27,17 +27,17 @@ public class DegalaiServiceImpl implements DegalaiService {
 
     @Override
     public void supiltiDegalus(AutomobiliaiForma forma) {
-        List<Automobiliai> auto = automobiliuRepozitorija.findAll();
-        List<Automobiliai> dyzeliniai = auto.stream().filter(a -> a.getDegalutipas().equals(Automobiliai.Degalutipas.DYZELINAS)).collect(Collectors.toList());
-        degaluPaskirstymas(dyzeliniai, forma.getDyzelinasKiekis());
-        List<Automobiliai> benzininiai = auto.stream().filter(a -> a.getDegalutipas().equals(Automobiliai.Degalutipas.BENZINAS)).collect(Collectors.toList());
-        degaluPaskirstymas(benzininiai, forma.getBenzinasKiekis());
-        List<Automobiliai> dujiniai = auto.stream().filter(a -> a.getDegalutipas().equals(Automobiliai.Degalutipas.DUJOS)).collect(Collectors.toList());
-        degaluPaskirstymas(dujiniai, forma.getDujosKiekis());
+        List<Automobilis> auto = automobiliuRepozitorija.findAll();
+        List<Automobilis> dyzeliniai = auto.stream().filter(a -> a.getDegalutipas().equals(Automobilis.Degalutipas.DYZELINAS)).collect(Collectors.toList());
+        paskirstytiDegalus(dyzeliniai, forma.getDyzelinasKiekis());
+        List<Automobilis> benzininiai = auto.stream().filter(a -> a.getDegalutipas().equals(Automobilis.Degalutipas.BENZINAS)).collect(Collectors.toList());
+        paskirstytiDegalus(benzininiai, forma.getBenzinasKiekis());
+        List<Automobilis> dujiniai = auto.stream().filter(a -> a.getDegalutipas().equals(Automobilis.Degalutipas.DUJOS)).collect(Collectors.toList());
+        paskirstytiDegalus(dujiniai, forma.getDujosKiekis());
     }
 
     @Override
-    public void degaluPaskirstymas(List<Automobiliai> list, double degaluKiekis) {
+    public void paskirstytiDegalus(List<Automobilis> list, double degaluKiekis) {
         for (int i = 0; i < list.size(); i++) {
             if (i == list.size() - 1) {
                 list.get(i).setSunaudojoDegalu(degaluKiekis);
@@ -48,7 +48,7 @@ public class DegalaiServiceImpl implements DegalaiService {
         }
     }
 
-    public List<Automobiliai> getAllAutomobiliai() {
+    public List<Automobilis> getAllAutomobiliai() {
         return automobiliuRepozitorija.findAll();
     }
 }

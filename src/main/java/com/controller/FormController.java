@@ -1,7 +1,7 @@
 package com.controller;
 
 
-import com.entity.Automobiliai;
+import com.entity.Automobilis;
 import com.entity.AutomobiliaiForma;
 import com.service.DegalaiServiceImpl;
 import com.service.ExcelServiceImpl;
@@ -32,7 +32,7 @@ public class FormController {
     public String resultGenerator(@ModelAttribute("forma") AutomobiliaiForma forma) throws IOException {
         degalaiService.skaiciuotiKaina(forma);
         degalaiService.supiltiDegalus(forma);
-        List<Automobiliai> automobiliai = degalaiService.getAllAutomobiliai();
+        List<Automobilis> automobiliai = degalaiService.getAllAutomobiliai();
         excelService.write(automobiliai);
         return "outputForm";
     }

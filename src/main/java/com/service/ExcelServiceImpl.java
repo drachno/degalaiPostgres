@@ -1,6 +1,6 @@
 package com.service;
 
-import com.entity.Automobiliai;
+import com.entity.Automobilis;
 import com.utility.ExcelStyles;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -13,7 +13,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.List;
 
-import static com.utility.ExcelDateUtils.isVasarosLaikas;
+import static com.utility.DateUtils.isVasarosLaikas;
 
 @Component
 public class ExcelServiceImpl implements ExcelService {
@@ -21,12 +21,12 @@ public class ExcelServiceImpl implements ExcelService {
     private final static int COLUMNS = 6;
 
     @Override
-    public void write(List<Automobiliai> automobiliai) throws IOException {
+    public void write(List<Automobilis> automobiliai) throws IOException {
 
         XSSFWorkbook wb = new XSSFWorkbook();
         XSSFSheet sheet = wb.createSheet("First sheet");
 
-        createSheet(sheet);
+        createRows(sheet);
 
         fillFirstColumn(wb, sheet);
 
@@ -38,7 +38,7 @@ public class ExcelServiceImpl implements ExcelService {
     }
 
     @Override
-    public void createSheet(XSSFSheet sheet) {
+    public void createRows(XSSFSheet sheet) {
 
         for (int i = 0; i < COLUMNS; i++) {
             sheet.createRow(i);
@@ -71,11 +71,11 @@ public class ExcelServiceImpl implements ExcelService {
     }
 
     @Override
-    public void fillData(XSSFWorkbook wb, XSSFSheet sheet, List<Automobiliai> automobiliai) {
+    public void fillData(XSSFWorkbook wb, XSSFSheet sheet, List<Automobilis> automobiliai) {
         int i = 1;
         DecimalFormat df = new DecimalFormat("#.####");
         df.setRoundingMode(RoundingMode.CEILING);
-        for (Automobiliai automobilis : automobiliai) {
+        for (Automobilis automobilis : automobiliai) {
             XSSFCell langelis = sheet.getRow(0).createCell(i);
             langelis.setCellValue(automobilis.getName());
             langelis.setCellStyle(ExcelStyles.firstRowStyle(wb));
